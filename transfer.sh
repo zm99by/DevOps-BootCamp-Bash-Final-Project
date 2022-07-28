@@ -30,14 +30,13 @@ singleDowload() {
 Help()
 {
    # Display Help
-   echo "Add description of the script functions here."
-   echo
-   echo "Syntax: scriptTemplate [-g|h|v|V]"
-   echo "options:"
-   echo "g     Print the GPL license notification."
-   echo "h     Print this Help."
-   echo "v     Verbose mode."
-   echo "V     Print software version and exit."
+   echo "Description: Bash tool to transfer files from the command line."
+   echo "---------------------------------------------------------------"
+   echo "Syntax: scriptTemplate [-d|h|v|]"
+   echo "---------------------------------------------------------------"
+   echo "-d     Download single file from the transfer.sh to the specified directory"
+   echo "-h     Show the help"
+   echo "-v     Print version"
    echo
 }
 
@@ -50,4 +49,4 @@ elif [[ $1 == "-d"* ]]; then
 fi
 
 singleUpload "$@" || exit 1
-printUploadResponse
+#printUploadResponse
