@@ -1,5 +1,6 @@
 #!/bin/bash
 #set -x
+# This script to upload files from terminal to https://transfer.sh 
 currentVersion="1.4.0"
 
 singleUpload()
@@ -37,20 +38,13 @@ Help()
    echo
 }
 
-case $@ in
-  -v)
-    echo "$currentVersion" && exit
-    ;;
-  -h)
-    Help && exit
-    ;;
-  -d)
-    singleDowload "$@" && exit
-    ;;
-esac
+if [[ $1 == "-v" ]]; then
+  echo "$currentVersion" && exit
+elif [[ $1 == "-h" ]]; then
+  Help && exit
+elif [[ $1 == "-d"* ]]; then
+  singleDowload "$@" && exit
+fi
 
 singleUpload "$@" || exit 1
 printUploadResponse
-
-# $ curl https://transfer.sh/1lDau/test.txt -o test.txt
-# ./transfer.sh -d ./test Mij6ca test.txt
