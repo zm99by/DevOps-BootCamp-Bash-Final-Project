@@ -13,17 +13,21 @@ singleUpload()
   done
 }
 
-#printUploadResponse()
-#{
-#fileID=$(echo "$response" | cut -d "/" -f 4)
+# printUploadResponse()
+# {
+# fileID=$(echo "$response" | cut -d "/" -f 4)
 #  cat <<EOF
-#Transfer File URL: $response
-#EOF
-#}
+# Transfer File URL: $response
+# EOF
+# }
 
 singleDowload() {
+  if [[ ! -d "$2" ]]
+      then
+    mkdir -p $2
+  fi
   echo Downloading "$4"
-  curl --progress-bar https://transfer.sh/"$2"/"$3" -o "$3"
+  curl --progress-bar https://transfer.sh/"$2"/"$3" -o "$2/$4"
   echo "Success!"
 }
 
