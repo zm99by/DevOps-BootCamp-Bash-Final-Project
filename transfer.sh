@@ -3,8 +3,7 @@
 # This script to upload files from terminal to https://transfer.sh 
 currentVersion="1.23.0"
 
-singleUpload()
-{
+singleUpload() { # Upload function
   for i in "$@"; do
     file=$i
     echo Uploading "$i"
@@ -13,27 +12,17 @@ singleUpload()
   done
 }
 
-# printUploadResponse()
-# {
-# fileID=$(echo "$response" | cut -d "/" -f 4)
-#  cat <<EOF
-# Transfer File URL: $response
-# EOF
-# }
-
-singleDowload() {
+singleDowload() { # Download function
   if [[ ! -d "$2" ]]
       then
-    mkdir -p $2
+    mkdir -p "$2"
   fi
   echo Downloading "$4"
   curl --progress-bar https://transfer.sh/"$2"/"$3" -o "$2/$4"
   echo "Success!"
 }
 
-Help()
-{
-   # Display Help
+Help() {   # Display Help
    echo "Description: Bash tool to transfer files from the command line."
    echo "---------------------------------------------------------------"
    echo "Syntax: scriptTemplate [-d|h|v|]"
@@ -52,5 +41,4 @@ elif [[ $1 == "-d"* ]]; then
   singleDowload "$@" && exit
 fi
 
-singleUpload "$@" || exit 1
-#printUploadResponse
+singleUpload "$@" 
