@@ -1,7 +1,6 @@
 #!/bin/bash
 #set -x
 # This script to upload files from terminal to https://transfer.sh 
-currentVersion="1.23.0"
 
 singleUpload() { # Upload function
   for i in "$@"; do
@@ -25,7 +24,7 @@ singleDowload() { # Download function
 Help() {   # Display Help
    echo "Description: Bash tool to transfer files from the command line."
    echo "---------------------------------------------------------------"
-   echo "Syntax: scriptTemplate [-d|h|v|]"
+   echo "Syntax: scriptTemplate [-d|-h|-v|]"
    echo "---------------------------------------------------------------"
    echo "-d     Download single file from the transfer.sh to the specified directory"
    echo "-h     Show the help"
@@ -34,11 +33,11 @@ Help() {   # Display Help
 }
 
 if [[ $1 == "-v" ]]; then
-  echo "$currentVersion" && exit
+  echo "1.23.0"
 elif [[ $1 == "-h" ]]; then
-  Help && exit
-elif [[ $1 == "-d"* ]]; then
-  singleDowload "$@" && exit
+  Help 
+elif [[ $1 == "-d" ]]; then
+  singleDowload "$@"
+else 
+  singleUpload "$@" 
 fi
-
-singleUpload "$@" 
