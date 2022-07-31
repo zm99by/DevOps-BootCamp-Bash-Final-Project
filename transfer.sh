@@ -14,10 +14,11 @@ singleUpload() { # Upload function
 singleDowload() { # Download function
   if [[ ! -d "$2" ]]
       then
-    mkdir -p "$2"
+    mkdir -p "$2/$3"
   fi
   echo Downloading "$4"
-  curl --progress-bar https://transfer.sh/"$2"/"$3" -o "$2/$4"
+  response=$(curl --progress-bar --create-dirs -o "$4" "https://transfer.sh/" --output-dir ./"$2"/"$3")
+  #curl --progress-bar https://transfer.sh/"$2"/"$3" -o "$2/$4"
   echo "Success!"
 }
 
@@ -27,8 +28,8 @@ Help() {   # Display Help
    echo "Syntax: scriptTemplate [-d|-h|-v|]"
    echo "---------------------------------------------------------------"
    echo "-d     Download single file from the transfer.sh to the specified directory"
-   echo "-h     Show the help"
-   echo "-v     Print version"
+   echo "-h     Show the help about application usage."
+   echo "-v     Show the application version."
    echo
 }
 
